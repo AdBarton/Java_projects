@@ -1,0 +1,116 @@
+// JAVA example
+import java.util.Scanner;
+public class main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Tree tree=new Tree();
+        
+        String a=sc.nextLine();
+        String[] nums=a.split(" ");
+        for(int i=0;i<nums.length;i++){
+            tree.add(Integer.parseInt(nums[i]));
+        }
+        
+        System.out.println("preorder");
+        tree.root.preorder();
+        System.out.println("inorder");
+        tree.root.inorder();
+        System.out.println("postorder");
+        tree.root.postorder();
+    } 
+    
+    public static class Node{
+        public int value;
+        public Node left;
+        public Node right;
+        
+        public Node(int value){
+            this.value=value;
+        }
+        
+        public Node add(int value){
+            if(value > this.value){
+                if(this.right == null){
+                    this.right= new Node(value);
+                    return this.right;
+                }else{
+                    return this.right.add(value);
+                }
+            }else{
+                if(this.left == null){
+                    this.left= new Node(value);
+                    return this.left;
+                }else{
+                    return this.left.add(value);
+                }
+            }
+        }
+        
+        public void inorder() {
+            if (this.left != null) {
+                this.left.inorder();
+            }
+            this.print();
+            if (this.right != null) {
+                this.right.inorder();
+            }
+        }
+        
+        public void postorder() {
+            if (this.left != null) {
+                this.left.postorder();
+            }
+            if (this.right != null) {
+                this.right.postorder();
+            }
+            this.print();
+        }
+        
+        public void preorder() {
+            this.print();
+            if (this.left != null) {
+                this.left.preorder();
+            }
+            if (this.right != null) {
+                this.right.preorder();
+            }
+        }
+        public void print() {
+            System.out.print(this.value);
+            System.out.print('\n');
+        }
+        
+    }
+    
+    public static class Tree{
+        public Node root;
+        
+        public void add(int value){
+            if(root == null){
+                root= new Node(value);
+            }else{
+                root.add(value);
+            }
+        }
+        /*
+        public void preorder(){
+            if(root == null) {return;}
+            System.out.println(root.left.value);
+            System.out.println(root.right.value);
+            System.out.println(root.value);
+        }
+        public void inorder(){
+            if(root == null) {return;}
+            System.out.println(root.left.value);
+            System.out.println(root.value);
+            System.out.println(root.right.value);
+        }
+        public void postorder(){
+            if(root == null) {return;}
+            System.out.println(root.value);
+            System.out.println(root.left.value);
+            System.out.println(root.right.value);
+        }
+        */
+    }
+}
