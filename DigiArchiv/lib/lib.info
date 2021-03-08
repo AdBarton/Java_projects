@@ -1,0 +1,3 @@
+Do tohoto adresare ulozte a do repozitare nahrajte pripadnou knihovnu, 
+ktera neni soucasti Java (8) a kterou použivate ve svem kodu, pokud ovšem takovéto prostředky využijete.
+Nezapomeňte pak tuto skutečnost uvést v popisu programu.
